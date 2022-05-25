@@ -12,12 +12,11 @@ namespace SimpleAjax\Controller;
 
 use Contao\System;
 use SimpleAjax\Event\SimpleAjax as SimpleAjaxEvent;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SimpleAjaxController extends Controller
+class SimpleAjaxController
 {
 
     /**
