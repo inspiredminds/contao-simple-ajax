@@ -25,6 +25,11 @@ class SimpleAjaxController
     private $dispatcher;
 
     /**
+     * @var string
+     */
+    private $frontendEntryPoint;
+
+    /**
      * @var bool
      */
     private $includeFrontendExclusive;
@@ -34,9 +39,10 @@ class SimpleAjaxController
      *
      * @param EventDispatcherInterface $dispatcher The event dispatcher.
      */
-    public function __construct(EventDispatcherInterface $dispatcher)
+    public function __construct(EventDispatcherInterface $dispatcher, string $frontendEntryPoint)
     {
         $this->dispatcher = $dispatcher;
+        $this->frontendEntryPoint = $frontendEntryPoint;
     }
 
     /**
@@ -58,11 +64,11 @@ class SimpleAjaxController
     {
         $this->includeFrontendExclusive = false !== strpos(
                 $request->getRequestUri(),
-                $this->getParameter('simpleajax.entrypoint-frontend')
+                $this->frontendEntryPoint
             );
 
         $event = new SimpleAjaxEvent($this->isIncludeFrontendExclusive());
-        $this->dispatcher->dispatch(SimpleAjaxEvent::NAME, $event);
+        $this->dispatcher->dispatch($event, SimpleAjaxEvent::NAME);
 
         // If the event listener does not terminate the process by itself, check for a `Response` to send (@since 1.2)
         $response = $event->getResponse();

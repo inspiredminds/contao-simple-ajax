@@ -1,11 +1,12 @@
+parameters:
+    simpleajax.entrypoint: "SimpleAjax.php"
+    simpleajax.entrypoint-frontend: "SimpleAjaxFrontend.php"
+
 services:
     richardhj.simple_ajax.controller:
         class: SimpleAjax\Controller\SimpleAjaxController
         arguments:
           - "@event_dispatcher"
+          - "%simpleajax.entrypoint-frontend%"
         tags: ['controller.service_arguments']
         public: true
-
-parameters:
-    simpleajax.entrypoint: "SimpleAjax.php"
-    simpleajax.entrypoint-frontend: "SimpleAjaxFrontend.php"

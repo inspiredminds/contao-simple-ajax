@@ -11,8 +11,8 @@
 namespace SimpleAjax\Event;
 
 
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\EventDispatcher\Event;
 
 
 /**
